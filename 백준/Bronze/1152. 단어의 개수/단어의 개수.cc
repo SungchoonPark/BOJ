@@ -13,9 +13,9 @@ public class Main {
             str = System.in.read();
 
             if (str == 32) { // 공백인 경우
-                if(preCh != 32) count++;
+                if(preCh != 32) count++; // 문자열이 공백으로 시작한 경우는 count x
             } else if (str == 10) { // /n 인 경우
-                if(preCh != 32) count++;
+                if(preCh != 32) count++; // 문자열이 공백으로 끝난 경우 count x
                 break;
             }
 
