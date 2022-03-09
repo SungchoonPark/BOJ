@@ -1,11 +1,19 @@
-#include <iostream>
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
-using namespace std;
+public class Main {
 
-int a,b;
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
 
-int main(void){
-    cin >> a >> b;
-    
-    cout << a+b;
+        int x = Integer.parseInt(st.nextToken());
+        int y = Integer.parseInt(st.nextToken());
+
+        int result = x + y;
+        System.out.println(result);
+
+    }
 }
