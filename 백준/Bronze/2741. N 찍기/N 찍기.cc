@@ -1,13 +1,21 @@
-#include <iostream>
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
-using namespace std;
+public class Main {
 
-int num;
+    public static void main(String[] args) throws IOException {
 
-int main(void){
-	cin >> num;
-	for(int i=1; i<=num; i++){
-		if(i==num) cout << i;
-		else cout << i << "\n";
-	}
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int value = Integer.parseInt(br.readLine());
+
+        for(int i =1; i<=value; i++) {
+            if(i==value) {
+                System.out.printf("%d", i);
+
+            } else {
+                System.out.println(i);
+            }
+        }
+    }
 }
