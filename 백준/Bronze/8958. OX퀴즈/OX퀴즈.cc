@@ -1,25 +1,30 @@
-#include <iostream>
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
-using namespace std;
+public class Main {
 
-int testNum, sum = 0, count=1;
-string ox;
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+        int num = Integer.parseInt(br.readLine());
 
-int main(void){
-	cin >> testNum;
-	for(int i=0; i<=testNum-1; i++){
-		cin >> ox;
-		for(int j=0; j<ox.length(); j++){
-			if(ox[j] == 'O'){
-				sum += count;
-				count++;
-			}
-			if(ox[j] == 'X'){
-				count = 1;
-			}
-		}
-		cout << sum << "\n";
-		count = 1;
-		sum = 0;
-	}
+        for (int i = 0; i < num; i++) {
+            int sum = 0;
+            String inputOx = br.readLine();
+            int incNum = 1;
+
+            for (int j = 0; j < inputOx.length(); j++) {
+                char tmp = inputOx.charAt(j);
+                if(tmp == 'O') {
+                    sum += incNum;
+                    incNum++;
+                } else if(tmp == 'X') {
+                    incNum = 1;
+                }
+            }
+            sb.append(sum).append("\n");
+        }
+        System.out.println(sb);
+    }
 }
