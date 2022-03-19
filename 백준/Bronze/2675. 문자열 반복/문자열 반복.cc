@@ -1,22 +1,28 @@
-#include <iostream>
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
-using namespace std;
+public class Main {
 
-int main() {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
 
-	int t, r;
-	char s[20];
-	cin >> t;
+        int num = Integer.parseInt(br.readLine());
 
-	for (int i = 0; i < t; i++) {
-		
-		cin >> r >> s;
+        for(int i = 0; i < num; i++) {
+            String[] s = br.readLine().split(" ");
+            int repeat = Integer.parseInt(s[0]);
+            char[] inputS = s[1].toCharArray();
 
-		for (int j = 0; s[j] != '\0'; j++) {
-			for (int k = 0; k < r; k++)
-				cout << s[j];
-		}
-		cout << "\n";
-	}
-	return 0;
+            for(int j = 0; j < inputS.length; j++) {
+                for(int k = 0; k < repeat; k++) {
+                    sb.append(inputS[j]);
+                }
+            }
+            System.out.println(sb);
+            sb.delete(0,sb.length());
+        }
+
+    }
 }
