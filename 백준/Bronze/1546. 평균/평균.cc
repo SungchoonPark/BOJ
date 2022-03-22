@@ -1,20 +1,35 @@
-#include <iostream>
-#include <algorithm>
-using namespace std;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
-int M,num;
-double a[1001],sum = 0.0;
+public class Main {
 
-int main(void){
-	cin >> num;
-	for(int i=0; i<num; i++){
-		cin >> a[i];	
-	}
-	sort(a,a+num);
-	M = a[num-1];
-	for(int i=0; i<num; i++){
-		a[i] = (a[i]/(double)M)*100;
-		sum += a[i];
-	}
-	cout << (double)(sum / (double)num);
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int num = Integer.parseInt(br.readLine());
+        double[] a = new double[num];
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        double maxNum = 0;
+        int index = 0;
+        while(st.hasMoreTokens()) {
+            double tmp = Double.parseDouble(st.nextToken());
+            a[index] = tmp;
+            index++;
+            if(tmp > maxNum) {
+                maxNum = tmp;
+            }
+        }
+
+        double sum = 0;
+        for (double v : a) {
+            sum += v / maxNum * 100;
+        }
+
+        System.out.println((sum / a.length));
+
+    }
 }
