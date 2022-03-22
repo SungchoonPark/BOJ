@@ -1,16 +1,27 @@
-#include <stdio.h>
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
-int main(void){
-	int num[100],max=0,maxIndex;
-	for(int i=0; i<9; i++){
-		scanf("%d",&num[i]);
-	}
-	for(int i=0; i<9; i++){
-		if(max < num[i]){
-			max = num[i];
-			maxIndex = i+1;
-		}
-	}
-	printf("%d\n",max);
-	printf("%d",maxIndex);
+public class Main {
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int max = 0;
+        int maxIndex = 0;
+
+        for(int i=0; i<9; i++) {
+            int intNum = Integer.parseInt(br.readLine());
+
+            if(intNum > max) {
+                max = intNum;
+                maxIndex = i+1;
+            }
+
+        }
+
+        System.out.println(max);
+        System.out.println(maxIndex);
+
+    }
 }
