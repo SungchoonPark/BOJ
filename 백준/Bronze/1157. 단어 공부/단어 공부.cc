@@ -1,30 +1,42 @@
-#include <iostream>
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
-using namespace std;
+public class Main {
 
-char word[1000001];
-int cnt[26] , flag = 1;
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String str = br.readLine();
+        
+        String newStr = str.toUpperCase();
 
-int main(void){
-	cin >> word;
-	for(int i=0; word[i] != '\0'; i++){
-		if(word[i] >= 'a' && word[i] <= 'z') word[i] -= 32;
-		cnt[word[i] - 'A']++;
-	}
-	int max = 0;
-	int maxIndex = 0;
-	for(int i=0; i<26; i++){
-		if(cnt[i] > max){
-			maxIndex = i;
-			max = cnt[i];
-		}
-	}
-	for(int i=maxIndex+1; i<26; i++){
-		if(cnt[i] == cnt[maxIndex]){
-			flag = 0;
-			break;
-		}
-	}
-	if(flag == 0) cout << '?';
-	else cout << (char)(maxIndex + 'A');
+        int[] alpha = new int[26];
+
+        for(int i=0; i<newStr.length(); i++) {
+            int n = newStr.charAt(i);
+            alpha[n-65]++;
+        }
+
+        int max = 0;
+        int maxIndex = 0;
+        int tmp = 0;
+
+        for(int i=0; i<alpha.length; i++) {
+            if(alpha[i] > max) {
+                max = alpha[i];
+                maxIndex = i;
+                tmp = 0;
+            } else if(alpha[i] == max) {
+                tmp++;
+            }
+        }
+        
+        if(tmp != 0) {
+            System.out.println("?");
+        } else {
+            char c = (char)(maxIndex+65);
+            System.out.println(c);
+        }
+
+    }
 }
