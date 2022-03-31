@@ -11,6 +11,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
         StringTokenizer st = new StringTokenizer(br.readLine());
         // i,j 위치부터 x,y 까지 위치의 합을 구하는것
         int n = Integer.parseInt(st.nextToken());
@@ -34,13 +35,14 @@ public class Main {
             int x = Integer.parseInt(st.nextToken());
             int y = Integer.parseInt(st.nextToken());
 
-            for(int q=i; q<=x; q++) { // 세로
+            for(int q=i; q<=x; q++) {
                 for(int w = j; w<=y; w++) {
                     result += arr[q][w];
                 }
             }
-            System.out.println(result);
+            sb.append(result).append("\n");
         }
+        System.out.println(sb);
     }
 }
 
