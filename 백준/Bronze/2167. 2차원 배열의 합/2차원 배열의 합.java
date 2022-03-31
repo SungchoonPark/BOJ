@@ -17,12 +17,18 @@ public class Main {
         int n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
         int[][] arr = new int[n+1][m+1];
+        int[][] dp = new int[n+1][m+1];
 
         for(int i=1; i<=n; i++) {
             st = new StringTokenizer(br.readLine(), " ");
             for(int j=1; j<=m; j++) {
                 int num = Integer.parseInt(st.nextToken());
                 arr[i][j] = num;
+                if(j == 1) {
+                    dp[i][j] = arr[i][j];
+                } else {
+                    dp[i][j] = dp[i][j-1] + arr[i][j];
+                }
             }
         }
 
@@ -35,10 +41,8 @@ public class Main {
             int x = Integer.parseInt(st.nextToken());
             int y = Integer.parseInt(st.nextToken());
 
-            for(int q=i; q<=x; q++) {
-                for(int w = j; w<=y; w++) {
-                    result += arr[q][w];
-                }
+            for(int row = i; row<=x; row++) {
+                result += dp[row][y] - dp[row][j-1];
             }
             sb.append(result).append("\n");
         }
