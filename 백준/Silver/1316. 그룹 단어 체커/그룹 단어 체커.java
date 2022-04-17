@@ -9,33 +9,24 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         int num = Integer.parseInt(br.readLine());
-        int cnt = 0;
+        int tmp = num;
 
-        for (int i = 0; i < num; i++) {
+        for(int i=0; i<num; i++) {
+            int[] alpha = new int[26];
             String str = br.readLine();
-            char[] arr = str.toCharArray();
-            int flag = 1;
 
-            for (int j = 0; j < str.length(); j++) {
-                for (int k = j + 1; k < str.length(); k++) {
-                    if (arr[j] == arr[k]) {
-                        if (arr[k - 1] != arr[j]) {
-                            flag = 0;
-                            break;
-                        }
+            for(int j=1; j<str.length(); j++) {
+                if(str.charAt(j-1) != str.charAt(j)) {
+                    if(alpha[str.charAt(j)-'a'] == 1) {
+                        tmp--;
+                        break;
                     }
+                    alpha[str.charAt(j-1) - 'a'] = 1;
                 }
-                if (flag == 0) {
-                    break;
-                }
-            }
-
-            if(flag == 1) {
-                cnt++;
             }
         }
+        System.out.println(tmp);
 
-        System.out.println(cnt);
     }
 }
 
