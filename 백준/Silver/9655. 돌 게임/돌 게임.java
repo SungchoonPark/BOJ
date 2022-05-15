@@ -10,34 +10,25 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         int N = Integer.parseInt(br.readLine());
-
+        int tmp = N/3;
         // 홀수 - 상근 , 짝수 창영
         if(N%3 == 0) {
-            int tmp = N/3;
-            if(tmp % 2 == 0) {
-                System.out.println("CY");
-                return;
-            }
-            System.out.println("SK");
+            print(tmp);
         } else if(N%3 == 1){
-            int a = N/3;
-            
-            if((a+1) % 2 == 0) {
-                System.out.println("CY");
-                return;
-            }
-            System.out.println("SK");
+            print(tmp+1);
         } else {
-            int b = N/3;
-
-            if((b+2) % 2 == 0) {
-                System.out.println("CY");
-                return;
-            }
-            System.out.println("SK");
+            print(tmp+2);
         }
+    }
 
-
+    public static void print(int n) {
+        StringBuilder sb = new StringBuilder();
+        if(n % 2 == 0) {
+            sb.append("CY");
+        } else {
+            sb.append("SK");
+        }
+        System.out.println(sb);
     }
 }
 
