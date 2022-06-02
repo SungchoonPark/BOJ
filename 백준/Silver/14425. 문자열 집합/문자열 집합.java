@@ -15,7 +15,7 @@ public class Main {
         int M = Integer.parseInt(st.nextToken());
         int result = 0;
 
-        List<String> strings = new ArrayList<>();
+        Set<String> strings = new HashSet<>();
         for(int i=0; i<N; i++) {
             strings.add(br.readLine());
         }
