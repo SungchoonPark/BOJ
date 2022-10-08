@@ -21,7 +21,7 @@ public class Main {
 
             if (A > B) {
                 System.out.println(-1);
-                System.exit(0);
+                return;
             }
 
             if (B % 2 == 0) {
@@ -30,7 +30,7 @@ public class Main {
                 B /= 10;
             } else {
                 System.out.println(-1);
-                System.exit(0);
+                return;
             }
 
             cnt++;
