@@ -14,19 +14,17 @@ public class Main {
 
         StringTokenizer st = new StringTokenizer(tmp, "-");
 
-        int sum = 0;
-        int result = 0;
-        int i = 0;
+        int result = Integer.MAX_VALUE;
         while (st.hasMoreTokens()) {
+            int sum = 0;
             String j = st.nextToken();
             StringTokenizer st1 = new StringTokenizer(j, "+");
             while (st1.hasMoreTokens()) {
-                int t = Integer.parseInt(st1.nextToken());
-                if (i == 0) result += t;
-                else sum += t;
+                sum += Integer.parseInt(st1.nextToken());
             }
-            i++;
+            if(result == Integer.MAX_VALUE) result = sum;
+            else result -= sum;
         }
-        System.out.println(result - sum);
+        System.out.println(result);
     }
 }
