@@ -40,6 +40,9 @@ public class Main {
     }
 
     private static int getWinRateFromGameNUm(long X, long Y) {
+        // 변수에 실수형을 저장하면 오차가 발생함. ex) double 0.58 * 100 은 58이 아닌 57이 된다.
+        // 따라서 실수를 계산할때는 최대한 정수범위 안에서 처리를 해야한다. 
+        // 따라서 Y * 100을 먼저 하는거임.
         return (int) (Y * 100 / X);
     }
 }
