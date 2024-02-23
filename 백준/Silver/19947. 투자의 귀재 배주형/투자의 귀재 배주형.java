@@ -21,10 +21,10 @@ public class Main {
         for(int i=1; i<=Y; i++) {
             money[i] = (long) Math.floor(money[i-1] * 1.05);
             if (i >= 5) {
-                money[i] = Math.max(money[i], (long) Math.floor(money[i-5] * 1.35));
+                money[i] = Math.max(money[i], (long) (money[i-5] * 1.35));
             }
             if (i >= 3) {
-                money[i] = Math.max(money[i], (long) Math.floor(money[i-3] * 1.2));
+                money[i] = Math.max(money[i], (long) (money[i-3] * 1.2));
             }
         }
 
