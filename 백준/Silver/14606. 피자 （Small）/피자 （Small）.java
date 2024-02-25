@@ -6,20 +6,18 @@ import java.util.*;
 
 public class Main {
     private static StringTokenizer st;
-    private static int[] arr;
-    private static int n;
+    private static int result;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        n = Integer.parseInt(br.readLine());
-        arr = new int[n];
+        int n = Integer.parseInt(br.readLine());
 
         for (int i = 1; i < n; i++) {
-            arr[i] = arr[i-1] + i;
+            result += i;
         }
 
-        System.out.println(arr[n-1]);
+        System.out.println(result);
     }
 }
 
