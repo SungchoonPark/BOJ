@@ -10,6 +10,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
         st = new StringTokenizer(br.readLine());
         int n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
@@ -24,7 +25,8 @@ public class Main {
             for (int b = i; b <= j; b++) stack.push(basket[b]);
             for (int b = i; b <= j; b++) basket[b] = stack.pop();
         }
-        for (int i = 1; i <= n; i++) System.out.print(basket[i] + " ");
+        for (int i = 1; i <= n; i++) sb.append(basket[i] + " ");
+        System.out.println(sb);
 
     }
 }
