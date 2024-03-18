@@ -8,19 +8,21 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
         int num = Integer.parseInt(br.readLine());
-
+        
         PriorityQueue<Long> pq = new PriorityQueue<>();
 
         for (int i = 0; i < num; i++) {
             long n = Long.parseLong(br.readLine());
 
             if (n == 0) {
-                if (pq.isEmpty()) System.out.println(0);
-                else System.out.println(pq.poll());
+                if (pq.isEmpty()) sb.append(0).append("\n");
+                else sb.append(pq.poll()).append("\n");
             } else {
                 pq.offer(n);
             }
         }
+        System.out.println(sb);
     }
 }
