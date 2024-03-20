@@ -5,6 +5,8 @@ import java.util.*;
 
 public class Main {
     static StringTokenizer st;
+    static PriorityQueue<Edge> edges;
+
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -22,7 +24,7 @@ public class Main {
             parents[i] = i;
         }
         int[] rank = new int[num + 1];
-        PriorityQueue<Edge> edges = new PriorityQueue<>(Comparator.comparingInt(edge -> edge.cost));
+        edges = new PriorityQueue<>(Comparator.comparingInt(edge -> edge.cost));
 
         for(int i=0; i<line; i++) {
             st = new StringTokenizer(br.readLine());
