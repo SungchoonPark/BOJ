@@ -8,7 +8,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
+        StringBuilder sb = new StringBuilder();
         int comNum = Integer.parseInt(br.readLine());
         int lineNum = Integer.parseInt(br.readLine());
 
@@ -39,8 +39,8 @@ public class Main {
             union(depth, parents, edge.u, edge.v);
             answer += edge.cost;
         }
-
-        System.out.println(answer);
+        sb.append(answer);
+        System.out.println(sb);
     }
 
     private static int findParent(int[] parents, int c) {
@@ -51,7 +51,7 @@ public class Main {
     private static void union(int[] depth, int[] parents, int c1, int c2) {
         int p1 = findParent(parents, c1);
         int p2 = findParent(parents, c2);
-        
+
         if (depth[p1] > depth[p2]) {
             parents[p2] = p1;
         } else {
