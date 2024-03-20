@@ -22,7 +22,7 @@ public class Main {
             parents[i] = i;
         }
         int[] rank = new int[num + 1];
-        Edge[] edges = new Edge[line];
+        PriorityQueue<Edge> edges = new PriorityQueue<>(Comparator.comparingInt(edge -> edge.cost));
 
         for(int i=0; i<line; i++) {
             st = new StringTokenizer(br.readLine());
@@ -31,12 +31,11 @@ public class Main {
             int b2 = Integer.parseInt(st.nextToken());
             int cost = Integer.parseInt(st.nextToken());
             maxCost += cost;
-            edges[i] = new Edge(b1, b2, cost);
+            edges.offer(new Edge(b1, b2, cost));
         }
 
-        Arrays.sort(edges, Comparator.comparingInt(edge -> edge.cost));
-
-        for (Edge edge : edges) {
+        while (!edges.isEmpty()) {
+            Edge edge = edges.poll();
             if (find(parents, edge.b1) == find(parents, edge.b2)) continue;
 
             union(parents, rank, edge.b1, edge.b2);
