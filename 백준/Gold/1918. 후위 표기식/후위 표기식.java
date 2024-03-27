@@ -41,7 +41,7 @@ public class Main {
         while(!stack.isEmpty()) {
             sb.append(stack.pop());
         }
-        System.out.println(sb);
+        System.out.println(sb.toString().trim());
     }
 
     private static int getPriority(char c) {
