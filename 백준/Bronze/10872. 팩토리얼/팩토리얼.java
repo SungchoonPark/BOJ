@@ -1,33 +1,20 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.*;
-
-import static java.lang.Math.max;
 
 public class Main {
-    static int n;
-    static StringTokenizer st;
-
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
 
         int n = Integer.parseInt(br.readLine());
+        int[] arr = new int[13];
 
-        if (n == 0) {
-            System.out.println(1);
-            return;
+        arr[0] = 1;
+        arr[1] = 1;
+        for (int i = 2; i <= n; i++) {
+            arr[i] = arr[i-1] * i;
         }
-        int result = 1;
 
-        for (int i = n; i > 0; i--) {
-            result *= i;
-        }
-        System.out.println(result);
-
-
+        System.out.println(arr[n]);
     }
 }
