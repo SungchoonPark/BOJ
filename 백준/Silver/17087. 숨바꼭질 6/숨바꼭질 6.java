@@ -17,21 +17,19 @@ public class Main {
         st = new StringTokenizer(br.readLine());
 
         int n = Integer.parseInt(st.nextToken());
-        Stack<Integer> stack = new Stack<>();
         int s = Integer.parseInt(st.nextToken());
-
+        int[] arr = new int[n];
         st = new StringTokenizer(br.readLine());
         for (int i=0; i<n; i++) {
-            stack.push(Math.abs(Integer.parseInt(st.nextToken()) - s));
+            arr[i] = (Math.abs(Integer.parseInt(st.nextToken()) - s));
         }
 
-        while (stack.size() != 1) {
-            Integer pop1 = stack.pop();
-            Integer pop2 = stack.pop();
-            stack.push(gcd(pop1, pop2));
+        int answer = arr[0];
+        for(int i=1; i<n; i++) {
+            answer = gcd(answer, arr[i]);
         }
-        sb.append(stack.pop());
-        System.out.println(sb);
+
+        System.out.println(answer);
     }
 
     private static int gcd(int n, int m) {
