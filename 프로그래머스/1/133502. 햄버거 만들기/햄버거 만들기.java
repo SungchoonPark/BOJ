@@ -2,21 +2,17 @@ import java.util.*;
 class Solution {
     public int solution(int[] ingredient) {
         int answer = 0;
-        List<Integer> list = new ArrayList<>();
+        int[] stack = new int[ingredient.length];
+        int sp = 0;
         
         for(int i : ingredient) {
-            list.add(i);
-            while(list.size() >= 4) {
-                int size = list.size();
-                if(!(list.get(size-1) == 1 
-                     && list.get(size-2) == 3 
-                     && list.get(size-3) == 2 
-                     && list.get(size-4) == 1)) break;
-                
-                for(int a=0; a<4; a++) {
-                    list.remove(list.size() - 1);
-                }
-                
+            stack[sp++] = i;
+            
+            if(sp >= 4 && stack[sp - 1] == 1
+              && stack[sp - 2] == 3
+              && stack[sp - 3] == 2
+              && stack[sp - 4] == 1) {
+                sp -= 4;
                 answer++;
             }
         }
