@@ -7,15 +7,15 @@ class Solution {
             playerMap.put(players[i], i);
         }
         
-        for(int i=0; i<callings.length; i++) {
-            Integer rank = playerMap.get(callings[i]);
-            String ddait = players[rank -1];
-            Integer ddaitRank = playerMap.get(ddait);
-            playerMap.put(callings[i], rank - 1);
-            playerMap.put(ddait, ddaitRank + 1);
-            String tmp = players[ddaitRank];
-            players[ddaitRank] = players[rank];
-            players[rank] = tmp;
+        for(String calling : callings) {
+            Integer rank = playerMap.get(calling);
+            
+            String tmp = players[rank];
+            players[rank] = players[rank - 1];
+            players[rank - 1] = tmp;
+            
+            playerMap.put(calling, rank - 1);
+            playerMap.put(players[rank], rank);
         }
         
         return players;
