@@ -7,7 +7,7 @@ public class Main {
     static StringTokenizer st;
     static boolean[] visited;
     static int[] answer;
-    static ArrayList<Integer>[] arr;
+    static PriorityQueue<Integer>[] arr;
     static int cnt = 1;
 
     public static void main(String[] args) throws IOException {
@@ -21,10 +21,10 @@ public class Main {
 
         visited = new boolean[n+1];
         answer = new int[n+1];
-        arr = new ArrayList[n+1];
+        arr = new PriorityQueue[n+1];
 
         for(int i=0; i<=n; i++) {
-            arr[i] = new ArrayList<>();
+            arr[i] = new PriorityQueue<>();
         }
 
         for(int i=0; i<m; i++) {
@@ -34,10 +34,6 @@ public class Main {
 
             arr[u].add(v);
             arr[v].add(u);
-        }
-
-        for(int i=0; i<=n; i++) {
-            Collections.sort(arr[i]);
         }
 
         visited[r] = true;
@@ -50,14 +46,13 @@ public class Main {
     }
 
     private static void dfs(int num) {
-        for (Integer i : arr[num]) {
-            if (!visited[i]) {
-                visited[i] = true;
-                answer[i] = cnt++;
-                dfs(i);
+        while(!arr[num].isEmpty()) {
+            Integer poll = arr[num].poll();
+            if (!visited[poll]) {
+                visited[poll] = true;
+                answer[poll] = cnt++;
+                dfs(poll);
             }
         }
     }
-
-
 }
