@@ -6,7 +6,7 @@ import java.util.*;
 public class Main {
     static StringTokenizer st;
 
-    static String[][] arr;
+    static char[][] arr;
     static boolean[][] visited;
     static int answer;
 
@@ -17,14 +17,13 @@ public class Main {
         int n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
 
-        arr = new String[n][m];
+        arr = new char[n][m];
         visited = new boolean[n][m];
 
         for (int i = 0; i < n; i++) {
             String s = br.readLine();
-            String[] split = s.split("");
-            for (int j = 0; j < split.length; j++) {
-                arr[i][j] = split[j];
+            for (int j = 0; j < s.length(); j++) {
+                arr[i][j] = s.charAt(j);
             }
         }
 
@@ -33,7 +32,7 @@ public class Main {
                 if (!visited[i][j]) {
                     answer++;
                     visited[i][j] = true;
-                    if (Objects.equals(arr[i][j], "-")) dfs(i, j, "-");
+                    if (arr[i][j] == '-') dfs(i, j, "-");
                     else dfs(i, j, "|");
                 }
             }
@@ -45,13 +44,13 @@ public class Main {
     private static void dfs(int y, int x, String type) {
         if (type.equals("-")) {
             int newX = x + 1;
-            if(newX < arr[0].length && !visited[y][newX] && arr[y][newX].equals("-")) {
+            if(newX < arr[0].length && !visited[y][newX] && arr[y][newX] == '-') {
                 visited[y][newX] = true;
                 dfs(y, newX, "-");
             }
         } else {
             int newY = y + 1;
-            if(newY < arr.length && !visited[newY][x] && arr[newY][x].equals("|")) {
+            if(newY < arr.length && !visited[newY][x] && arr[newY][x] == '|') {
                 visited[newY][x] = true;
                 dfs(newY, x, "|");
             }
