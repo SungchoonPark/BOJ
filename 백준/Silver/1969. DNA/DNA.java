@@ -13,35 +13,31 @@ public class Main {
 
         int n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
+        int[] alpha = new int[26];
         int answer = 0;
         List<String> list = new ArrayList<>();
-        Map<String, Integer> map = new HashMap<>();
 
         for (int i = 0; i < n; i++) {
             list.add(br.readLine());
         }
 
         for (int i = 0; i < m; i++) {
-            map.put("A", 0);
-            map.put("T", 0);
-            map.put("G", 0);
-            map.put("C", 0);
-            for (String s : list) {
-                String tmp = String.valueOf(s.charAt(i));
-                map.put(tmp, map.get(tmp) + 1);
+            for(int j=0; j<list.size(); j++) {
+                char c = list.get(j).charAt(i);
+                alpha[c - 'A']++;
             }
 
             int max = 0;
-            String sMax = "";
-            for (String s : map.keySet()) {
-                int num = map.get(s);
-                if (num > max || (num == max && s.compareTo(sMax) < 0)) {
-                    max = num;
-                    sMax = s;
+            char sMax = 'a';
+            for(int k=0; k<alpha.length; k++) {
+                if (alpha[k] > max) {
+                    max = alpha[k];
+                    sMax = (char)(k + 'A');
                 }
             }
             answer += n - max;
             sb.append(sMax);
+            Arrays.fill(alpha, 0);
         }
         sb.append("\n").append(answer);
         System.out.println(sb);
