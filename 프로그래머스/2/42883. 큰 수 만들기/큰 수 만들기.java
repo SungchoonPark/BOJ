@@ -7,8 +7,9 @@ class Solution {
         
         for(int i=0; i<number.length(); i++) {
             Character c = number.charAt(i);
-            while(!stack.isEmpty() && stack.peek() < c && k-- > 0) {
+            while(!stack.isEmpty() && stack.peek() < c && k > 0) {
                 stack.pop();
+                k--;
             }
             stack.push(c);
         }
