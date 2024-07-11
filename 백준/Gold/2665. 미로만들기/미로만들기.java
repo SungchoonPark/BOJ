@@ -5,7 +5,7 @@ public class Main {
     static int n;
     static int[] distX = {1, -1, 0, 0}; // 좌우
     static int[] distY = {0, 0, 1, -1}; // 상하
-    static int[][] arr;
+    static String[][] arr;
     static boolean[][] visited;
 
     public static void main(String[] args) throws IOException {
@@ -13,12 +13,12 @@ public class Main {
         StringTokenizer st = new StringTokenizer(br.readLine());
 
         n = Integer.parseInt(st.nextToken());
-        arr = new int[n][n];
+        arr = new String[n][n];
         visited = new boolean[n][n];
 
         for (int i = 0; i < n; i++) {
             String a = br.readLine();
-            arr[i] = Arrays.stream(a.split("")).mapToInt(Integer::parseInt).toArray();
+            arr[i] = a.split("");
         }
         System.out.println(bfs());
     }
@@ -42,7 +42,7 @@ public class Main {
 
                 if (nx < 0 || ny < 0 || nx >= n || ny >= n || visited[ny][nx]) continue;
 
-                if (arr[ny][nx] == 0)  pq.offer(new Pos(nx, ny, curPos.breakRoom + 1));
+                if (arr[ny][nx].equals("0"))  pq.offer(new Pos(nx, ny, curPos.breakRoom + 1));
                 else pq.offer(new Pos(nx, ny, curPos.breakRoom));
                 visited[ny][nx] = true;
             }
@@ -60,4 +60,6 @@ public class Main {
             this.breakRoom = breakRoom;
         }
     }
+
+
 }
