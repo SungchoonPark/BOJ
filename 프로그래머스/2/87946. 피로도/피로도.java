@@ -1,44 +1,21 @@
 import java.util.*;
 class Solution {
+    static boolean[] check;
+    static int max;
     public int solution(int currentFatigue, int[][] dungeons) {
-        int maxDungeon = 0;
-
-        List<int[][]> permutations = new ArrayList<>();
-        boolean[] visited = new boolean[dungeons.length];
-        
-        generatePermutations(dungeons, new ArrayList<>(), visited, permutations);
-
-        for (int[][] permutation : permutations) {
-            int fatigue = currentFatigue;
-            int count = 0;
-            for (int[] dungeon : permutation) {
-                if (fatigue >= dungeon[0]) {
-                    fatigue -= dungeon[1];
-                    count++;
-                } else {
-                    break;
-                }
-            }
-            maxDungeon = Math.max(maxDungeon, count);
-        }
-        
-        return maxDungeon;
+        check = new boolean[dungeons.length];
+        dfs(currentFatigue, dungeons, 0);
+        return max;
     }
     
-    private void generatePermutations(int[][] dungeons, List<int[]> current, boolean[] visited, List<int[][]> result) {
-        if (current.size() == dungeons.length) {
-            result.add(current.toArray(new int[0][0]));
-            return;
-        }
-        
-        for (int i = 0; i < dungeons.length; i++) {
-            if (!visited[i]) {
-                visited[i] = true;
-                current.add(dungeons[i]);
-                generatePermutations(dungeons, current, visited, result);
-                current.remove(current.size() - 1);
-                visited[i] = false;
+    private static void dfs(int fatigue, int[][] dungeons, int cnt) {
+        for(int i=0; i<dungeons.length; i++) {
+            if(!check[i] && fatigue >= dungeons[i][0]) {
+                check[i] = true;
+                dfs(fatigue - dungeons[i][1], dungeons, cnt+1);
+                check[i] = false;
             }
         }
+        max = Math.max(cnt, max);
     }
 }
