@@ -49,7 +49,8 @@ public class Main {
             int cnt = 0;
             // 비교
             for (int inputWord : arr) {
-                if ((inputWord | newBit) == newBit) cnt++;
+//                if ((inputWord | newBit) == newBit) cnt++;
+                if ((inputWord & newBit) == inputWord) cnt++;
             }
             if (cnt > max) max = cnt;
             return;
