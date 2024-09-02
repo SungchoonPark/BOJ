@@ -36,7 +36,7 @@ public class Main {
             // 연산
             // 1. 화면에 존재하는 이모티콘 모두 복사하여 클립보드에 저장
             // 기존 내용은 덮어쓰기가 됨
-            if (visit[curEmo.screen][curEmo.screen] >= curEmo.time + 1) {
+            if (visit[curEmo.screen][curEmo.screen] == 9999) {
                 visit[curEmo.screen][curEmo.screen] = curEmo.time + 1;
                 q.offer(new Emo(curEmo.screen, curEmo.screen, curEmo.time + 1));
             }
@@ -45,7 +45,7 @@ public class Main {
             // 단, 클립보드가 비어있으면 (clipboard == 0) 붙여넣기 할 수 없음
             // 붙여넣기 하면 클립보드의 개수만큼 화면에 추가가됨
             if (curEmo.clipboard != 0 && curEmo.screen + curEmo.clipboard < 1050) {
-                if (visit[curEmo.screen + curEmo.clipboard][curEmo.clipboard] >= curEmo.time + 1) {
+                if (visit[curEmo.screen + curEmo.clipboard][curEmo.clipboard] == 9999) {
                     visit[curEmo.screen + curEmo.clipboard][curEmo.clipboard] = curEmo.time + 1;
                     q.offer(new Emo(curEmo.screen + curEmo.clipboard, curEmo.clipboard, curEmo.time + 1));
                 }
@@ -53,7 +53,7 @@ public class Main {
 
             // 3. 화면에 있는 이모티콘 하나 삭제
             if (curEmo.screen >= 1) {
-                if (visit[curEmo.screen - 1][curEmo.clipboard] >= curEmo.time + 1) {
+                if (visit[curEmo.screen - 1][curEmo.clipboard] == 9999) {
                     visit[curEmo.screen - 1][curEmo.clipboard] = curEmo.time + 1;
                     q.offer(new Emo(curEmo.screen - 1, curEmo.clipboard, curEmo.time + 1));
                 }
