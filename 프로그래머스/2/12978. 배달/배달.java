@@ -42,7 +42,7 @@ class Solution {
                 int relatedTownNum = relatedTown.num;
                 int relatedTownTime = relatedTown.time;
                 
-                
+                if(arr[curTown.num] < curTown.time) continue;
                 
                 if(arr[relatedTownNum] > arr[curTown.num] + relatedTownTime) {
                     arr[relatedTownNum] = arr[curTown.num] + relatedTownTime;
