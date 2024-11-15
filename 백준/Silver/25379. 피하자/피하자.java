@@ -16,28 +16,27 @@ public class Main {
             arr[i] = Integer.parseInt(st.nextToken());
         }
 
-        int min1 = 0;
-        int min2 = 0;
+        long oddSum  = 0;
+        int cnt = 0;
+        for (int i = 0; i < n; i++) {
+            if (!isEven(arr[i])) {
+                oddSum += cnt;
+            } else {
+                cnt++;
+            }
+        }
 
-        int evenLen = 0;
+        long evenSum = 0;
+        cnt = 0;
         for (int i = 0; i < n; i++) {
             if (isEven(arr[i])) {
-                evenLen++;
+                evenSum += cnt;
             } else {
-                min1 += evenLen;
+                cnt++;
             }
         }
 
-        int evenLen2  = 0;
-        for (int i = n - 1; i >= 0; i--) {
-            if (isEven(arr[i])) {
-                evenLen2++;
-            } else {
-                min2 += evenLen2;
-            }
-        }
-
-        System.out.print(Math.min(min1, min2));
+        System.out.print(Math.min(evenSum, oddSum));
 
     }
 
