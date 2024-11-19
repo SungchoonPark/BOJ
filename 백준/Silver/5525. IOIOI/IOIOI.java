@@ -1,33 +1,30 @@
 import java.io.*;
-import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
-
-        String p = makeP(n);
-
-        int cnt = 0;
         int len = Integer.parseInt(br.readLine());
         String s = br.readLine();
-        for (int i = 0; i <= len - p.length(); i++) {
-            StringBuilder sb = new StringBuilder();
-            for (int j =i ; j < i + p.length(); j++) {
-                sb.append(s.charAt(j));
+
+        int count = 0; // 패턴 일치 개수
+        int result = 0; // 최종 패턴 수
+        int i = 1;
+
+        while (i < len - 1) {
+            if (s.charAt(i - 1) == 'I' && s.charAt(i) == 'O' && s.charAt(i + 1) == 'I') {
+                count++;
+                if (count == n) {
+                    result++;
+                    count--; // 다음 패턴을 위해 count 줄이기
+                }
+                i += 2; // IOI 패턴을 찾았으니 2칸 이동
+            } else {
+                count = 0; // 패턴이 깨지면 count 초기화
+                i++;
             }
-            if (sb.toString().equals(p)) cnt++;
         }
 
-        System.out.println(cnt);
-    }
-
-    private static String makeP(int n) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < (n + n + 1); i++) {
-            String s = (i%2 == 0) ? "I" : "O";
-            sb.append(s);
-        }
-        return sb.toString();
+        System.out.println(result);
     }
 }
