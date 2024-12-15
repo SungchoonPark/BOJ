@@ -2,59 +2,38 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-    static StringTokenizer st;
-    static StringBuilder sb;
-
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        sb = new StringBuilder();
-        st = new StringTokenizer(br.readLine());
+        StringTokenizer st = new StringTokenizer(br.readLine());
 
         int n = Integer.parseInt(st.nextToken());
         int c = Integer.parseInt(st.nextToken());
 
         st = new StringTokenizer(br.readLine());
 
-        Map<Integer, Integer> map = new HashMap<>();
-        List<Integer> order = new ArrayList<>();
+        // LinkedHashMap으로 입력 순서를 유지하면서 빈도 카운트
+        Map<Integer, Integer> frequencyMap = new LinkedHashMap<>();
         for (int i = 0; i < n; i++) {
             int num = Integer.parseInt(st.nextToken());
-            if (!map.containsKey(num)) {
-                order.add(num); // 처음 등장한 숫자의 순서를 기록
-            }
-            map.put(num, map.getOrDefault(num, 0) + 1);
+            frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
         }
 
-        PriorityQueue<Num> pq = new PriorityQueue<>((n1, n2) -> {
-            if (n2.cnt != n1.cnt) {
-                return n2.cnt - n1.cnt; // 빈도 내림차순
-            } else {
-                return order.indexOf(n1.num) - order.indexOf(n2.num); // 순서 오름차순
-            }
-        });
+        // Map.Entry를 리스트로 변환하여 빈도 내림차순으로 정렬
+        List<Map.Entry<Integer, Integer>> entryList = new ArrayList<>(frequencyMap.entrySet());
+        entryList.sort((e1, e2) -> e2.getValue().equals(e1.getValue()) 
+            ? 0 // 빈도가 같으면 순서를 유지 (LinkedHashMap의 삽입 순서 보장)
+            : e2.getValue() - e1.getValue()); // 빈도 내림차순 정렬
 
-        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
-            pq.add(new Num(entry.getKey(), entry.getValue()));
-        }
-
-        while(!pq.isEmpty()) {
-            Num poll = pq.poll();
-
-            for (int i = 0; i < poll.cnt; i++) {
-                sb.append(poll.num).append(" ");
+        // 결과 출력
+        StringBuilder sb = new StringBuilder();
+        for (Map.Entry<Integer, Integer> entry : entryList) {
+            int num = entry.getKey();
+            int count = entry.getValue();
+            for (int i = 0; i < count; i++) {
+                sb.append(num).append(" ");
             }
         }
 
         System.out.println(sb);
-    }
-
-    static class Num {
-        int num;
-        int cnt;
-
-        public Num(int num, int cnt) {
-            this.num = num;
-            this.cnt = cnt;
-        }
     }
 }
