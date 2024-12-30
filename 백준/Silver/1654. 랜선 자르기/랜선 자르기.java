@@ -1,51 +1,45 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.StringTokenizer;
+import java.io.*;
+import java.util.*;
 
 public class Main {
-    private static StringTokenizer st;
-    private static int[] lans;
-    private static int K, N;
+    static StringTokenizer st;
+    static StringBuilder sb;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        sb = new StringBuilder();
+
         st = new StringTokenizer(br.readLine());
-        K = Integer.parseInt(st.nextToken());
-        N = Integer.parseInt(st.nextToken());
+        int n = Integer.parseInt(st.nextToken());
+        int m = Integer.parseInt(st.nextToken());
 
-        lans = new int[K];
-
-        for (int i = 0; i < K; i++) {
-            lans[i] = Integer.parseInt(br.readLine());
-        }
-        System.out.println(binarySearch());
-    }
-
-    private static long binarySearch() {
         long start = 1;
-        long end = Integer.MAX_VALUE;
+        long end = Integer.MIN_VALUE;
 
-        while (end >= start) {
-            long lanLength = (start + end) / 2;
-            long cnt = cntFromLanLength(lanLength);
-            if (cnt >= N) {
-                start = lanLength + 1;
+        int[]arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            int i1 = Integer.parseInt(br.readLine());
+            arr[i] = i1;
+            end = Math.max(end, i1);
+        }
+
+        long result = 0;
+        while(start <= end) {
+            long length = (start + end) / 2;
+
+            long tmp = 0;
+            for (int i : arr) {
+                tmp += i / length;
+            }
+
+            if (tmp >= m) {
+                start = length + 1;
+                result = Math.max(result, length);
             } else {
-                end = lanLength - 1;
+                end = length - 1;
             }
         }
 
-        return start - 1;
-    }
-
-    private static long cntFromLanLength(long lanLength) {
-        int cnt = 0;
-        for (int lan : lans) {
-            cnt += (lan / lanLength);
-        }
-        return cnt;
+        System.out.println(result);
     }
 }
-
-
