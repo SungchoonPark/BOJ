@@ -1,36 +1,31 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.*;
 
 public class Main {
-    static StringTokenizer st;
+
+   static StringTokenizer st;
+   static StringBuilder sb;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        sb = new StringBuilder();
 
         int n = Integer.parseInt(br.readLine());
-
-        int tmp = 2*n;
-        for(int i=1; i<=2*n-1; i++) {
-            if (i <= n) {
-                for(int j=1; j<=n-i; j++) {
-                    System.out.print(" ");
-                }
-                for (int j=1; j<=2*i-1; j++) {
-                    System.out.print("*");
-                }
-                System.out.println();
+        int tryCount = 2 * n - 1;
+        for (int i = 1; i <= tryCount; i++) {
+            int startCount = 0;
+            if (i > n) {
+                startCount = tryCount - (2 * (i - n));
             } else {
-                for(int j=1; j<=i-n; j++) {
-                    System.out.print(" ");
-                }
-                for (int j=1; j<=2*(tmp-i)-1; j++) {
-                    System.out.print("*");
-                }
-                System.out.println();
+                startCount = 2 * i - 1;
             }
-        }
-    }
+            int blankCount = Math.abs(n - i);
 
+            sb.append(" ".repeat(blankCount))
+                .append("*".repeat(startCount));
+
+            if (i != tryCount) sb.append("\n");
+        }
+        System.out.print(sb);
+    }
 }
