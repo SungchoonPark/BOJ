@@ -1,30 +1,44 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.*;
 
 public class Main {
-    static StringTokenizer st;
+
+   static StringTokenizer st;
+   static StringBuilder sb;
+
+   static boolean[] isNotDecimal = new boolean[1_000_001];
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
+        sb = new StringBuilder();
 
-        boolean[] arr = new boolean[1000001];
-        arr[0] = arr[1] = true;
-        for (int i = 2; i <= 1000000; i++) {
-            if (arr[i]) continue;
-            for (int j = i * 2; j <= 1000000; j += i) {
-                if (!arr[j]) arr[j] = true;
+        st = new StringTokenizer(br.readLine());
+
+        int m = Integer.parseInt(st.nextToken());
+        int n = Integer.parseInt(st.nextToken());
+
+        erathos();
+
+        for (int i = m; i <= n; i++) {
+            if (!isNotDecimal[i]) {
+                sb.append(i).append("\n");
             }
         }
 
-        st = new StringTokenizer(br.readLine());
-        int start = Integer.parseInt(st.nextToken());
-        int end = Integer.parseInt(st.nextToken());
-        for (int i = start; i<=end; i++) {
-            if (!arr[i]) sb.append(i).append("\n");
+        System.out.print(sb);
+    }
+
+    private static void erathos() {
+        Arrays.fill(isNotDecimal, false);
+        isNotDecimal[1] = true;
+        for (int i = 2; i <= isNotDecimal.length; i++) {
+            for (int j = i * 2; j <= isNotDecimal.length; j += i) {
+                if (j < isNotDecimal.length && !isNotDecimal[j]) {
+                    isNotDecimal[j] = true;
+                }
+            }
         }
-        System.out.println(sb);
+
+
     }
 }
