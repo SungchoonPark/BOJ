@@ -54,6 +54,7 @@ public class Main {
             if (!visited[node.next]) {
                 visited[node.next] = true;
                 search(node.next, accLength + node.value);
+                visited[node.next] = false;
             }
         }
     }
