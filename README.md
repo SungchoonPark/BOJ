@@ -9,6 +9,7 @@ This is a auto push repository for Baekjoon Online Judge created with [BaekjoonH
 | [0001-two-sum](https://github.com/SungchoonPark/BOJ/tree/master/0001-two-sum) |
 | [0121-best-time-to-buy-and-sell-stock](https://github.com/SungchoonPark/BOJ/tree/master/0121-best-time-to-buy-and-sell-stock) |
 | [0561-array-partition](https://github.com/SungchoonPark/BOJ/tree/master/0561-array-partition) |
+| [0739-daily-temperatures](https://github.com/SungchoonPark/BOJ/tree/master/0739-daily-temperatures) |
 | [0974-reorder-data-in-log-files](https://github.com/SungchoonPark/BOJ/tree/master/0974-reorder-data-in-log-files) |
 ## String
 |  |
@@ -49,8 +50,13 @@ This is a auto push repository for Baekjoon Online Judge created with [BaekjoonH
 | ------- |
 | [0020-valid-parentheses](https://github.com/SungchoonPark/BOJ/tree/master/0020-valid-parentheses) |
 | [0234-palindrome-linked-list](https://github.com/SungchoonPark/BOJ/tree/master/0234-palindrome-linked-list) |
+| [0739-daily-temperatures](https://github.com/SungchoonPark/BOJ/tree/master/0739-daily-temperatures) |
 ## Recursion
 |  |
 | ------- |
 | [0234-palindrome-linked-list](https://github.com/SungchoonPark/BOJ/tree/master/0234-palindrome-linked-list) |
+## Monotonic Stack
+|  |
+| ------- |
+| [0739-daily-temperatures](https://github.com/SungchoonPark/BOJ/tree/master/0739-daily-temperatures) |
 <!---LeetCode Topics End-->
