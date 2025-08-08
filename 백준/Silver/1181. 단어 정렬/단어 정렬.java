@@ -23,6 +23,6 @@ public class Main {
 
                     if (len1 == len2) return s1.compareTo(s2);
                     return len1 - len2;
-                }).forEach(s -> System.out.println(s));
+                }).forEach(System.out::println);
     }
 }
