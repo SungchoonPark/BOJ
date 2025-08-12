@@ -41,6 +41,7 @@ This is a auto push repository for Baekjoon Online Judge created with [BaekjoonH
 ## Linked List
 |  |
 | ------- |
+| [0023-merge-k-sorted-lists](https://github.com/SungchoonPark/BOJ/tree/master/0023-merge-k-sorted-lists) |
 | [0234-palindrome-linked-list](https://github.com/SungchoonPark/BOJ/tree/master/0234-palindrome-linked-list) |
 | [0860-design-circular-queue](https://github.com/SungchoonPark/BOJ/tree/master/0860-design-circular-queue) |
 ## Two Pointers
@@ -75,4 +76,16 @@ This is a auto push repository for Baekjoon Online Judge created with [BaekjoonH
 | [0225-implement-stack-using-queues](https://github.com/SungchoonPark/BOJ/tree/master/0225-implement-stack-using-queues) |
 | [0232-implement-queue-using-stacks](https://github.com/SungchoonPark/BOJ/tree/master/0232-implement-queue-using-stacks) |
 | [0860-design-circular-queue](https://github.com/SungchoonPark/BOJ/tree/master/0860-design-circular-queue) |
+## Divide and Conquer
+|  |
+| ------- |
+| [0023-merge-k-sorted-lists](https://github.com/SungchoonPark/BOJ/tree/master/0023-merge-k-sorted-lists) |
+## Heap (Priority Queue)
+|  |
+| ------- |
+| [0023-merge-k-sorted-lists](https://github.com/SungchoonPark/BOJ/tree/master/0023-merge-k-sorted-lists) |
+## Merge Sort
+|  |
+| ------- |
+| [0023-merge-k-sorted-lists](https://github.com/SungchoonPark/BOJ/tree/master/0023-merge-k-sorted-lists) |
 <!---LeetCode Topics End-->
