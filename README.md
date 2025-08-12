@@ -10,6 +10,7 @@ This is a auto push repository for Baekjoon Online Judge created with [BaekjoonH
 | [0121-best-time-to-buy-and-sell-stock](https://github.com/SungchoonPark/BOJ/tree/master/0121-best-time-to-buy-and-sell-stock) |
 | [0561-array-partition](https://github.com/SungchoonPark/BOJ/tree/master/0561-array-partition) |
 | [0739-daily-temperatures](https://github.com/SungchoonPark/BOJ/tree/master/0739-daily-temperatures) |
+| [0860-design-circular-queue](https://github.com/SungchoonPark/BOJ/tree/master/0860-design-circular-queue) |
 | [0974-reorder-data-in-log-files](https://github.com/SungchoonPark/BOJ/tree/master/0974-reorder-data-in-log-files) |
 ## String
 |  |
@@ -41,6 +42,7 @@ This is a auto push repository for Baekjoon Online Judge created with [BaekjoonH
 |  |
 | ------- |
 | [0234-palindrome-linked-list](https://github.com/SungchoonPark/BOJ/tree/master/0234-palindrome-linked-list) |
+| [0860-design-circular-queue](https://github.com/SungchoonPark/BOJ/tree/master/0860-design-circular-queue) |
 ## Two Pointers
 |  |
 | ------- |
@@ -66,9 +68,11 @@ This is a auto push repository for Baekjoon Online Judge created with [BaekjoonH
 | ------- |
 | [0225-implement-stack-using-queues](https://github.com/SungchoonPark/BOJ/tree/master/0225-implement-stack-using-queues) |
 | [0232-implement-queue-using-stacks](https://github.com/SungchoonPark/BOJ/tree/master/0232-implement-queue-using-stacks) |
+| [0860-design-circular-queue](https://github.com/SungchoonPark/BOJ/tree/master/0860-design-circular-queue) |
 ## Queue
 |  |
 | ------- |
 | [0225-implement-stack-using-queues](https://github.com/SungchoonPark/BOJ/tree/master/0225-implement-stack-using-queues) |
 | [0232-implement-queue-using-stacks](https://github.com/SungchoonPark/BOJ/tree/master/0232-implement-queue-using-stacks) |
+| [0860-design-circular-queue](https://github.com/SungchoonPark/BOJ/tree/master/0860-design-circular-queue) |
 <!---LeetCode Topics End-->
