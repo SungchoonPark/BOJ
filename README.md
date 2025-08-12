@@ -17,6 +17,7 @@ This is a auto push repository for Baekjoon Online Judge created with [BaekjoonH
 |  |
 | ------- |
 | [0020-valid-parentheses](https://github.com/SungchoonPark/BOJ/tree/master/0020-valid-parentheses) |
+| [0782-jewels-and-stones](https://github.com/SungchoonPark/BOJ/tree/master/0782-jewels-and-stones) |
 | [0974-reorder-data-in-log-files](https://github.com/SungchoonPark/BOJ/tree/master/0974-reorder-data-in-log-files) |
 ## Sorting
 |  |
@@ -27,6 +28,7 @@ This is a auto push repository for Baekjoon Online Judge created with [BaekjoonH
 |  |
 | ------- |
 | [0001-two-sum](https://github.com/SungchoonPark/BOJ/tree/master/0001-two-sum) |
+| [0782-jewels-and-stones](https://github.com/SungchoonPark/BOJ/tree/master/0782-jewels-and-stones) |
 | [0817-design-hashmap](https://github.com/SungchoonPark/BOJ/tree/master/0817-design-hashmap) |
 ## Greedy
 |  |
