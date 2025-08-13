@@ -8,6 +8,7 @@ This is a auto push repository for Baekjoon Online Judge created with [BaekjoonH
 | ------- |
 | [0001-two-sum](https://github.com/SungchoonPark/BOJ/tree/master/0001-two-sum) |
 | [0121-best-time-to-buy-and-sell-stock](https://github.com/SungchoonPark/BOJ/tree/master/0121-best-time-to-buy-and-sell-stock) |
+| [0347-top-k-frequent-elements](https://github.com/SungchoonPark/BOJ/tree/master/0347-top-k-frequent-elements) |
 | [0561-array-partition](https://github.com/SungchoonPark/BOJ/tree/master/0561-array-partition) |
 | [0739-daily-temperatures](https://github.com/SungchoonPark/BOJ/tree/master/0739-daily-temperatures) |
 | [0817-design-hashmap](https://github.com/SungchoonPark/BOJ/tree/master/0817-design-hashmap) |
@@ -23,6 +24,7 @@ This is a auto push repository for Baekjoon Online Judge created with [BaekjoonH
 ## Sorting
 |  |
 | ------- |
+| [0347-top-k-frequent-elements](https://github.com/SungchoonPark/BOJ/tree/master/0347-top-k-frequent-elements) |
 | [0561-array-partition](https://github.com/SungchoonPark/BOJ/tree/master/0561-array-partition) |
 | [0974-reorder-data-in-log-files](https://github.com/SungchoonPark/BOJ/tree/master/0974-reorder-data-in-log-files) |
 ## Hash Table
@@ -30,6 +32,7 @@ This is a auto push repository for Baekjoon Online Judge created with [BaekjoonH
 | ------- |
 | [0001-two-sum](https://github.com/SungchoonPark/BOJ/tree/master/0001-two-sum) |
 | [0003-longest-substring-without-repeating-characters](https://github.com/SungchoonPark/BOJ/tree/master/0003-longest-substring-without-repeating-characters) |
+| [0347-top-k-frequent-elements](https://github.com/SungchoonPark/BOJ/tree/master/0347-top-k-frequent-elements) |
 | [0782-jewels-and-stones](https://github.com/SungchoonPark/BOJ/tree/master/0782-jewels-and-stones) |
 | [0817-design-hashmap](https://github.com/SungchoonPark/BOJ/tree/master/0817-design-hashmap) |
 ## Greedy
@@ -39,6 +42,7 @@ This is a auto push repository for Baekjoon Online Judge created with [BaekjoonH
 ## Counting Sort
 |  |
 | ------- |
+| [0347-top-k-frequent-elements](https://github.com/SungchoonPark/BOJ/tree/master/0347-top-k-frequent-elements) |
 | [0561-array-partition](https://github.com/SungchoonPark/BOJ/tree/master/0561-array-partition) |
 ## Dynamic Programming
 |  |
@@ -88,10 +92,12 @@ This is a auto push repository for Baekjoon Online Judge created with [BaekjoonH
 |  |
 | ------- |
 | [0023-merge-k-sorted-lists](https://github.com/SungchoonPark/BOJ/tree/master/0023-merge-k-sorted-lists) |
+| [0347-top-k-frequent-elements](https://github.com/SungchoonPark/BOJ/tree/master/0347-top-k-frequent-elements) |
 ## Heap (Priority Queue)
 |  |
 | ------- |
 | [0023-merge-k-sorted-lists](https://github.com/SungchoonPark/BOJ/tree/master/0023-merge-k-sorted-lists) |
+| [0347-top-k-frequent-elements](https://github.com/SungchoonPark/BOJ/tree/master/0347-top-k-frequent-elements) |
 ## Merge Sort
 |  |
 | ------- |
@@ -104,4 +110,12 @@ This is a auto push repository for Baekjoon Online Judge created with [BaekjoonH
 |  |
 | ------- |
 | [0003-longest-substring-without-repeating-characters](https://github.com/SungchoonPark/BOJ/tree/master/0003-longest-substring-without-repeating-characters) |
+## Bucket Sort
+|  |
+| ------- |
+| [0347-top-k-frequent-elements](https://github.com/SungchoonPark/BOJ/tree/master/0347-top-k-frequent-elements) |
+## Quickselect
+|  |
+| ------- |
+| [0347-top-k-frequent-elements](https://github.com/SungchoonPark/BOJ/tree/master/0347-top-k-frequent-elements) |
 <!---LeetCode Topics End-->
