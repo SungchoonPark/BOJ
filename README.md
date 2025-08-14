@@ -7,6 +7,7 @@ This is a auto push repository for Baekjoon Online Judge created with [BaekjoonH
 |  |
 | ------- |
 | [0001-two-sum](https://github.com/SungchoonPark/BOJ/tree/master/0001-two-sum) |
+| [0046-permutations](https://github.com/SungchoonPark/BOJ/tree/master/0046-permutations) |
 | [0121-best-time-to-buy-and-sell-stock](https://github.com/SungchoonPark/BOJ/tree/master/0121-best-time-to-buy-and-sell-stock) |
 | [0347-top-k-frequent-elements](https://github.com/SungchoonPark/BOJ/tree/master/0347-top-k-frequent-elements) |
 | [0561-array-partition](https://github.com/SungchoonPark/BOJ/tree/master/0561-array-partition) |
@@ -124,4 +125,5 @@ This is a auto push repository for Baekjoon Online Judge created with [BaekjoonH
 |  |
 | ------- |
 | [0017-letter-combinations-of-a-phone-number](https://github.com/SungchoonPark/BOJ/tree/master/0017-letter-combinations-of-a-phone-number) |
+| [0046-permutations](https://github.com/SungchoonPark/BOJ/tree/master/0046-permutations) |
 <!---LeetCode Topics End-->
