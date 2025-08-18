@@ -22,24 +22,19 @@ public class Main {
             arr[i] = Integer.parseInt(st.nextToken());
         }
 
-        boolean[] visited = new boolean[n];
-        for (int i = 1; i <= n; i++) {
-            search(visited, i, 0, 0);
-        }
+        search(0, 0);
 
+        if (s == 0) result--;
         System.out.println(result);
     }
 
-    private static void search(boolean[] visited, int depth, int value, int idx) {
-        if (depth == 0 && value == s) {
-            result++;
+    private static void search(int cur, int num) {
+        if (cur == n) {
+            if (num == s) result++;
             return;
         }
 
-        for (int i = idx; i < n; i++) {
-            visited[i] = true;
-            search(visited, depth - 1, value + arr[i], i + 1);
-            visited[i] = false;
-        }
+        search(cur + 1, num);
+        search(cur + 1, num + arr[cur]);
     }
 }
