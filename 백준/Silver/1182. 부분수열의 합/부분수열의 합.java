@@ -2,8 +2,8 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
+
     static StringTokenizer st;
-    static StringBuilder sb;
 
     static int n, s;
     static int[] arr;
@@ -13,7 +13,6 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         st = new StringTokenizer(br.readLine());
-
         n = Integer.parseInt(st.nextToken());
         s = Integer.parseInt(st.nextToken());
 
@@ -24,27 +23,22 @@ public class Main {
         }
 
         boolean[] visited = new boolean[n];
-        for (int j = 1; j <= n; j++) {
-            comb(visited, 0, n, j);
+        for (int i = 1; i <= n; i++) {
+            search(visited, i, 0, 0);
         }
 
-        System.out.print(result);
+        System.out.println(result);
     }
 
-    private static void comb(boolean[] visited, int start, int num, int r) {
-        if (r == 0) {
-            int tmp = 0;
-            for (int i = 0; i < n; i++) {
-                if (visited[i]) tmp += arr[i];
-            }
-
-            if (tmp == s) result++;
+    private static void search(boolean[] visited, int depth, int value, int idx) {
+        if (depth == 0 && value == s) {
+            result++;
             return;
         }
 
-        for (int i = start; i < n; i++) {
+        for (int i = idx; i < n; i++) {
             visited[i] = true;
-            comb(visited, i + 1, num, r - 1);
+            search(visited, depth - 1, value + arr[i], i + 1);
             visited[i] = false;
         }
     }
