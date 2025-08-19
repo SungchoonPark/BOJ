@@ -3,41 +3,39 @@ import java.util.*;
 
 public class Main {
 
-    static int n, m;
-    static List<Integer> list;
-    static int[] arr;
-    static int[] sum;
     static StringTokenizer st;
+    static StringBuilder sb;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
+        sb = new StringBuilder();
 
         st = new StringTokenizer(br.readLine());
-        n = Integer.parseInt(st.nextToken());
-        m = Integer.parseInt(st.nextToken());
 
-        arr = new int[n+1];
-        sum = new int[n+2];
+        int n = Integer.parseInt(st.nextToken());
+        int m = Integer.parseInt(st.nextToken());
+        int[] arr = new int[n + 1];
         st = new StringTokenizer(br.readLine());
-        for (int i = 1; i < n + 1; i++) {
+        for (int i = 1; i <= n; i++) {
             arr[i] = Integer.parseInt(st.nextToken());
         }
-        for (int i = 1; i < n+2; i++) {
-            sum[i] = sum[i-1] + arr[i-1];
+
+        // dp[i][j] i번째부터 j번째까지의 합
+        int[] dp = new int[n + 1];
+
+        for (int i = 1; i < n + 1; i++) {
+            dp[i] = dp[i - 1] + arr[i];
         }
 
         for (int i = 0; i < m; i++) {
             st = new StringTokenizer(br.readLine());
-            int start = Integer.parseInt(st.nextToken());
-            int end = Integer.parseInt(st.nextToken());
 
-            sb.append(sum(start, end)).append("\n");
+            int si = Integer.parseInt(st.nextToken());
+            int ei = Integer.parseInt(st.nextToken());
+
+            sb.append(dp[ei] - dp[si - 1]).append("\n");
         }
-        System.out.print(sb);
-    }
 
-    private static int sum(int start, int end) {
-        return sum[end+1] - sum[start];
+        System.out.print(sb);
     }
 }
