@@ -2,47 +2,51 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
+
     static StringTokenizer st;
-    static long[] arr;
+    static StringBuilder sb;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
+        sb = new StringBuilder();
+
         int n = Integer.parseInt(br.readLine());
-        arr = new long[n];
         st = new StringTokenizer(br.readLine());
-        for(int i=0; i<n; i++){
-            arr[i] = Long.parseLong(st.nextToken());
+
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = Integer.parseInt(st.nextToken());
         }
 
         Arrays.sort(arr);
 
-        int m = Integer.parseInt(br.readLine());
+        n = Integer.parseInt(br.readLine());
         st = new StringTokenizer(br.readLine());
-        for(int i=0; i<m; i++){
-            long tmp = Long.parseLong(st.nextToken());
-            sb.append(binarySearch(tmp)).append("\n");
-        }
+        for (int i = 0; i < n; i++) {
+            int findNum = Integer.parseInt(st.nextToken());
 
-        System.out.println(sb);
-    }
+            int start = 0;
+            int end = arr.length - 1;
 
-    private static int binarySearch(long tmp) {
-        int stIdx = 0;
-        int edIdx = arr.length - 1;
+            while(start <= end) {
+                int mid = (start + end) / 2;
 
-        while(stIdx <= edIdx) {
-            int middle = (stIdx + edIdx) / 2;
+                if (arr[mid] == findNum) {
+                    sb.append(1).append("\n");
+                    break;
+                }
 
-            if (arr[middle] == tmp) {
-                return 1;
-            } else if (arr[middle] > tmp) {
-                edIdx = middle - 1;
-            } else if (arr[middle] < tmp) {
-                stIdx = middle + 1;
+                if (arr[mid] > findNum) {
+                    end = mid - 1;
+                } else if (arr[mid] < findNum) {
+                    start = mid + 1;
+                }
+            }
+            if (start > end){
+                sb.append(0).append("\n");
             }
         }
 
-        return 0;
+        System.out.print(sb);
     }
 }
