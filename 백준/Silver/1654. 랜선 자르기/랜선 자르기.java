@@ -2,44 +2,53 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
+
     static StringTokenizer st;
     static StringBuilder sb;
 
+    static int k, n;
+    static int[] lans;
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        sb = new StringBuilder();
 
         st = new StringTokenizer(br.readLine());
-        int n = Integer.parseInt(st.nextToken());
-        int m = Integer.parseInt(st.nextToken());
 
-        long start = 1;
-        long end = Integer.MIN_VALUE;
-
-        int[]arr = new int[n];
-        for (int i = 0; i < n; i++) {
-            int i1 = Integer.parseInt(br.readLine());
-            arr[i] = i1;
-            end = Math.max(end, i1);
+        k = Integer.parseInt(st.nextToken());
+        n = Integer.parseInt(st.nextToken());
+        lans = new int[k];
+        for (int i = 0; i < k; i++) {
+            lans[i] = Integer.parseInt(br.readLine());
         }
 
-        long result = 0;
-        while(start <= end) {
-            long length = (start + end) / 2;
+        long st = 0;
+        long end = Integer.MAX_VALUE;
+        while (st < end) {
+            long mid = (st + end + 1) / 2;
 
-            long tmp = 0;
-            for (int i : arr) {
-                tmp += i / length;
+            if (solve(mid)) {
+                st = mid;
+                continue;
             }
 
-            if (tmp >= m) {
-                start = length + 1;
-                result = Math.max(result, length);
-            } else {
-                end = length - 1;
-            }
+            end = mid - 1;
         }
 
-        System.out.println(result);
+        System.out.println(st);
     }
+
+    private static boolean solve(long tmpLan) {
+        int cnt = 0;
+
+        for (int i = 0; i < k; i++) {
+            cnt += (lans[i] / tmpLan);
+        }
+
+        if (cnt >= n) {
+            return true;
+        }
+
+        return false;
+    }
+
 }
