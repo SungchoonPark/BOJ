@@ -3,49 +3,53 @@ import java.util.*;
 
 public class Main {
 
-    static int n;
-    static long m;
+    static StringTokenizer st;
+    static StringBuilder sb;
+
+    static int n, m;
     static int[] arrs;
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer stt = new StringTokenizer(br.readLine());
 
-        n = Integer.parseInt(stt.nextToken());
-        m = Long.parseLong(stt.nextToken());
+        st = new StringTokenizer(br.readLine());
+
+        n = Integer.parseInt(st.nextToken());
+        m = Integer.parseInt(st.nextToken());
 
         arrs = new int[n];
         int maxT = 0;
+
         for (int i = 0; i < n; i++) {
-            int t = Integer.parseInt(br.readLine());
-            arrs[i] = t;
-            if (t > maxT) maxT = t;
+            arrs[i] = Integer.parseInt(br.readLine());
+            if (arrs[i] > maxT) maxT = arrs[i];
         }
 
-        long st = 1;                         // 0도 되지만 1로 시작해도 무방
-        long end = (long) maxT * m;          // 상한을 정확히
-        long ans = end;
+        long st = 0;
+        long end = (long) maxT * m;
 
-        while (st <= end) {
-            long mid = st + (end - st) / 2;
-
-            if (canFinish(mid)) {            // mid 시간 내 m명 처리 가능
-                ans = mid;
+        while(st <= end) {
+            long  mid = (st + end) / 2;
+            if (solve(mid)) {
                 end = mid - 1;
             } else {
                 st = mid + 1;
             }
         }
 
-        System.out.println(ans);
+        System.out.println(st);
+
     }
 
-    private static boolean canFinish(long time) {
+    private static boolean solve(long time) {
         long cnt = 0;
-        for (int t : arrs) {
-            cnt += time / t;
-            if (cnt >= m) return true;       // 조기 종료로 시간 절약
+
+        for (int i = 0; i < n; i++) {
+            cnt += (time / arrs[i]);
+            if (cnt >= m) return true;
         }
+
         return false;
     }
+
 }
