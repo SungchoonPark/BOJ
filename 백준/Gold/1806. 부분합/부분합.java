@@ -2,46 +2,52 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
+
     static StringTokenizer st;
     static StringBuilder sb;
-    static int n, s;
-    static int min = Integer.MAX_VALUE;
+
+    static int n, m;
+
+    static int[] arrs;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        sb = new StringBuilder();
 
         st = new StringTokenizer(br.readLine());
 
         n = Integer.parseInt(st.nextToken());
-        s = Integer.parseInt(st.nextToken());
-        int[] arr = new int[n];
+        m = Integer.parseInt(st.nextToken());
+        arrs = new int[n];
         st = new StringTokenizer(br.readLine());
-
         for (int i = 0; i < n; i++) {
-            int tmp = Integer.parseInt(st.nextToken());
-            arr[i] = tmp;
+            arrs[i] = Integer.parseInt(st.nextToken());
         }
 
-        int left = 0;
-        int right = 0;
-        int sum = arr[left];
-        while (left <= right) {
-            if (left == n || right == n) break;
-            int tmpLen = right - left + 1;
+        int start = 0;
+        int end = 0;
+        int sum = arrs[start];
+        int minLength = Integer.MAX_VALUE;
 
-            if (sum >= s) {
-                if (tmpLen < min) {
-                    min = tmpLen;
-                }
-                left++;
-                if (left != n) sum -= arr[left - 1];
+        while(start <= end) {
+            if (start == n || end == n) break;
+
+            if (sum >= m) {
+                // 합의 조건은 만족하는 상황
+                minLength = Math.min(minLength, end - start + 1);
+                if (start < n) sum -= arrs[start];
+                start++;
             } else {
-                right++;
-                if (right != n) sum += arr[right];
+                end++;
+                if (end < n) sum += arrs[end];
             }
         }
-        if (min == Integer.MAX_VALUE) System.out.println(0);
-        else System.out.print(min);
+
+        if (minLength == Integer.MAX_VALUE) {
+            System.out.print(0);
+        } else {
+            System.out.println(minLength);
+        }
+
     }
+
 }
