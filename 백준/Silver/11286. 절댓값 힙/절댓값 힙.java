@@ -1,37 +1,40 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.*;
 
 public class Main {
+
     static StringTokenizer st;
+    static StringBuilder sb;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
-        int num = Integer.parseInt(br.readLine());
+        sb = new StringBuilder();
+        int caseNum = Integer.parseInt(br.readLine());
 
-        PriorityQueue<Long> pq = new PriorityQueue<>(
-                (n1, n2) -> {
-                    long absDiff = Math.abs(n1) - Math.abs(n2);
-                    if (absDiff == 0) {
-                        return Long.compare(n1, n2);
-                    } else {
-                        return Long.compare(absDiff, 0);
-                    }
-                }
-        );
-
-        for (int i = 0; i < num; i++) {
-            long n = Long.parseLong(br.readLine());
-
-            if (n == 0) {
-                if (pq.isEmpty()) sb.append(0).append("\n");
-                else sb.append(pq.poll()).append("\n");
+        PriorityQueue<Long> pq = new PriorityQueue<>((i1, i2) -> {
+            if (Math.abs(i1) == Math.abs(i2)) {
+                return Math.toIntExact(i1 - i2);
             } else {
-                pq.offer(n);
+                return Math.toIntExact(Math.abs(i1) - Math.abs(i2));
+            }
+        });
+
+        for (int i = 0; i < caseNum; i++) {
+            long value = Long.parseLong(br.readLine());
+
+            if (value == 0) {
+                if (pq.isEmpty()) {
+                    sb.append(0).append("\n");
+                } else {
+                    Long poll = pq.poll();
+                    sb.append(poll).append("\n");
+                }
+            } else {
+                pq.offer(value);
             }
         }
-        System.out.println(sb);
+
+        System.out.print(sb);
     }
+
 }
