@@ -1,60 +1,61 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.*;
 
 public class Main {
+
     static StringTokenizer st;
     static StringBuilder sb;
+
     static int n;
-    static List<Integer>[] array;
-    static boolean[] visited;
     static int[] parent;
+    static boolean[] visited;
+    static List<Integer>[] trees;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         sb = new StringBuilder();
 
         n = Integer.parseInt(br.readLine());
+        parent = new int[n + 1];
+        visited = new boolean[n + 1];
+        trees = new List[n + 1];
 
-        array = new ArrayList[n+1];
-        visited = new boolean[n+1];
-        parent = new int[n+1];
-
-        for(int i=0; i<n+1; i++) {
-            array[i] = new ArrayList<>();
+        for (int i = 0; i < n + 1; i++) {
+            trees[i] = new ArrayList();
         }
 
-        for(int i=0; i<n-1; i++) {
+        for (int i = 0; i < n - 1; i++) {
             st = new StringTokenizer(br.readLine());
+
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
 
-            array[a].add(b);
-            array[b].add(a);
+            trees[a].add(b);
+            trees[b].add(a);
         }
 
-        bfs(1);
+        visited[0] = true;
+        visited[1] = true;
+        dfs(1);
 
-        for (int i=2; i<n+1; i++) {
+        for (int i = 2; i < n + 1; i++) {
             sb.append(parent[i]).append("\n");
         }
-        System.out.println(sb);
+        System.out.print(sb);
     }
 
-    static void bfs(int start) {
-        Queue<Integer> q = new LinkedList<>();
-        visited[start] = true;
-        q.add(start);
+    private static void dfs(int start) {
+        Stack<Integer> stack = new Stack<>();
+        stack.push(start);
 
-        while(!q.isEmpty()) {
-            start = q.poll();
-            for(int i=0; i<array[start].size(); i++) {
-                int a = array[start].get(i);
-                if (!visited[a]) {
-                    q.add(a);
-                    parent[a] = start;
-                    visited[a] = true;
+        while(!stack.isEmpty()) {
+            Integer curNode = stack.pop();
+
+            for (Integer i : trees[curNode]) {
+                if (!visited[i]) {
+                    visited[i] = true;
+                    stack.push(i);
+                    parent[i] = curNode;
                 }
             }
         }
