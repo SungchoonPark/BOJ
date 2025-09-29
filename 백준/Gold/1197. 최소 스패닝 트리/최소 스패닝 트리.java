@@ -1,81 +1,81 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.*;
 
 public class Main {
+
     static StringTokenizer st;
-    static int[] rank;
+    static StringBuilder sb;
+
+    static int v, e;
+    static int[] ps;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        sb = new StringBuilder();
+
         st = new StringTokenizer(br.readLine());
-        int nodeNum = Integer.parseInt(st.nextToken());
-        int lineNum = Integer.parseInt(st.nextToken());
-        rank = new int[nodeNum+1];
-        int[] parent = new int[nodeNum + 1];
-        Edge[] edges = new Edge[lineNum];
-        long answer = 0;
+        v = Integer.parseInt(st.nextToken());
+        e = Integer.parseInt(st.nextToken());
 
-        for (int i = 1; i <= nodeNum; i++) {
-            parent[i] = i;
+        ps = new int[v + 1];
+        for (int i = 0; i < v + 1; i++) {
+            ps[i] = i;
         }
 
-        for (int i = 0; i < lineNum; i++) {
+        PriorityQueue<Link> priorityQueue = new PriorityQueue<>((l1, l2) -> l1.cost - l2.cost);
+        for (int i = 0; i < e; i++) {
             st = new StringTokenizer(br.readLine());
-            int u = Integer.parseInt(st.nextToken());
-            int v = Integer.parseInt(st.nextToken());
-            int cost = Integer.parseInt(st.nextToken());
-            edges[i] = new Edge(u, v, cost);
-        }
-        Arrays.sort(edges, Comparator.comparingInt(edge -> edge.cost));
 
-        for (Edge edge : edges) {
-            // 부모가 같으면 같은 그래프내에 있는거므로 안됨
-            if (find(parent,edge.u) == find(parent, edge.v)) continue;
+            int a = Integer.parseInt(st.nextToken());
+            int b = Integer.parseInt(st.nextToken());
+            int c = Integer.parseInt(st.nextToken());
 
-            union(parent, edge.u, edge.v);
-            answer += edge.cost;
+            priorityQueue.add(new Link(a, b, c));
         }
 
-        System.out.println(answer);
-    }
+        int count = 0;
+        int result = 0;
+        while(!priorityQueue.isEmpty()) {
+            Link minLink = priorityQueue.poll();
 
-    private static void union(int[] parent, int u, int v) {
-        int parent1 = find(parent, u);
-        int parent2 = find(parent, v);
+            int p1 = find(minLink.to);
+            int p2 = find(minLink.from);
+            if (p1 == p2) continue;
 
-        if (rank[parent1] < rank[parent2]) {
-            parent[parent1] = parent2;
-        } else {
-            parent[parent2] = parent1;
+            union(p1, p2);
+            count++;
+            result += minLink.cost;
 
-            if (rank[parent1] == rank[parent2]) {
-                rank[parent1]++;
+            if (count == v - 1) {
+                break;
             }
         }
+
+        System.out.println(result);
     }
 
-    private static int find(int[] parent, int x) {
-        if (parent[x] == x) return x;
-        return parent[x] = find(parent, parent[x]);
+    private static int find(int node) {
+        if (ps[node] == node) {
+            return node;
+        }
+
+        return ps[node] = find(ps[node]);
     }
 
-}
-
-class Edge {
-    int u;
-    int v;
-    int cost;
-
-    public Edge(int u, int v, int cost) {
-        this.u = u;
-        this.v = v;
-        this.cost = cost;
+    private static void union(int parent, int child) {
+        ps[child] = parent;
     }
 
-    @Override
-    public String toString() {
-        return u + " " + v + " " + cost;
+    static class Link {
+        int to;
+        int from;
+
+        int cost;
+
+        public Link(int to, int from, int cost) {
+            this.to = to;
+            this.from = from;
+            this.cost = cost;
+        }
     }
 }
