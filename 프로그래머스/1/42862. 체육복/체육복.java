@@ -1,44 +1,44 @@
 import java.util.*;
+
 class Solution {
     public int solution(int n, int[] lost, int[] reserve) {
-        List<Integer> reserveList = new ArrayList<>();
-        List<Integer> lostList = new ArrayList<>();
+        // 여벌 가져온놈이 도난당하면 1개로 침 -> 못빌려줌
+        // 최대한 빌려줄 수 있는 학생수가 몇명이냐 ?
         
-        Arrays.sort(lost);
-        Arrays.sort(reserve);
+        Set<Integer> wear = new HashSet<>();
+        boolean[] isNeedHelp = new boolean[n + 1];
+        boolean[] isCanBorrow = new boolean[n + 1];
         
-        for(int i=0; i<reserve.length; i++) {
-            reserveList.add(reserve[i]);   
+        for(int i=1; i<=n; i++) wear.add(i);
+        for(int r : reserve) {
+            isCanBorrow[r] = true;
         }
         
-        for(int i=0; i<lost.length; i++) {
-            lostList.add(lost[i]);   
-        }
-        
-        List<Integer> tmpList = new ArrayList<>();
-        for(int i=0; i<lostList.size(); i++) {
-            int tmp = lostList.get(i);
-            if(reserveList.contains(tmp)) {
-                tmpList.add(tmp);
+        for(int l : lost) {
+            if(isCanBorrow[l]) isCanBorrow[l] = false;
+            else {
+                isNeedHelp[l] = true;
+                wear.remove(l);
             }
         }
         
-        reserveList.removeAll(tmpList);
-        lostList.removeAll(tmpList);
-        
-        int answer = n - lostList.size();
-        
-        for(int i=0; i<lostList.size(); i++) {
-            int tmp = lostList.get(i);
-            if(reserveList.contains(tmp - 1)) {
-                reserveList.remove(reserveList.indexOf(tmp - 1));
-                answer++;
-            } else if(reserveList.contains(tmp + 1)) {
-                reserveList.remove(reserveList.indexOf(tmp + 1));
-                answer++;
+        for(int i=1; i<n + 1; i++) {
+            if(!isCanBorrow[i]) continue;
+            
+            int front = i - 1;
+            int back = i + 1;
+            
+            if(front > 0 && isNeedHelp[front]) {
+                isNeedHelp[front] = false;
+            } else if(back < n +1 && isNeedHelp[back]) {
+                isNeedHelp[back] = false;
             }
         }
         
-        return answer;
+        int result = -1;
+        for(boolean t : isNeedHelp) {
+            if(!t) result++;
+        }
+        return result;
     }
 }
