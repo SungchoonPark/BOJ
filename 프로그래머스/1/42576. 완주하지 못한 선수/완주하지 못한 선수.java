@@ -1,27 +1,29 @@
 import java.util.*;
+
 class Solution {
-    private static Map<String, Integer> map = new HashMap<>();
     public String solution(String[] participant, String[] completion) {
-        String answer = "";
+        Map<String, Integer> maps = new HashMap<>();
+        
         for(String p : participant) {
-            map.putIfAbsent(p, 0);
-            map.put(p, map.get(p) + 1);
+            maps.put(p, maps.getOrDefault(p, 0) + 1);
         }
         
+        
         for(String p : completion) {
-            int cnt = map.get(p);
-            if(cnt == 1) {
-                map.remove(p);
-            } else {
-                map.put(p, map.get(p) - 1);
+            int count = maps.get(p);
+            
+            if(count - 1 == 0) {
+                maps.remove(p);
+                continue;
             }
+            
+            maps.put(p, count - 1);
         }
-        Set<String> keySet = map.keySet();
-        String result = null;
-        for(String r : keySet) {
-            System.out.println(r);
-            result = r;
+                
+        for(String p : maps.keySet()) {
+            return p;
         }
-        return result;
+        
+        return "EMPTY";
     }
 }
