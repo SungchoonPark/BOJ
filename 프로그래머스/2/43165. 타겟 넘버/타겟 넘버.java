@@ -1,19 +1,17 @@
-import java.util.*;
-
 class Solution {
-    static int cnt = 0;
+    static int count = 0;
     public int solution(int[] numbers, int target) {
-        dfs(0, target, numbers, 0);
-        return cnt;
+        dfs(0, numbers.length, numbers, target, 0);
+        return count;
     }
     
-    private void dfs(int num, int target, int[] numbers, int idx) {
-        if(idx == numbers.length) {
-            if(num == target) cnt++;
+    private void dfs(int curDepth, int maxDepth, int[] numbers, int target, int curValue) {
+        if(curDepth == maxDepth) {
+            if(target == curValue) count++;
             return;
         }
         
-        dfs(num + numbers[idx], target, numbers, idx+1);
-        dfs(num - numbers[idx], target, numbers, idx+1);
+        dfs(curDepth + 1, maxDepth, numbers, target, curValue + numbers[curDepth]);
+        dfs(curDepth + 1, maxDepth, numbers, target, curValue - numbers[curDepth]);
     }
 }
