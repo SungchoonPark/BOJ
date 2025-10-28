@@ -1,21 +1,24 @@
 import java.util.*;
 
 public class Solution {
-    public int[] solution(int []arr) {
-        Stack<Integer> stack = new Stack<>();
-        stack.push(arr[0]);
-        for(int i=1; i<arr.length; i++) {
-            if(stack.peek() != arr[i]) {
-                stack.push(arr[i]);
-            } 
+    public int[] solution(int[] arr) {
+        Deque<Integer> stack = new ArrayDeque<>();
+        
+        for(int value : arr) {
+            if(stack.isEmpty()) stack.addFirst(value);
+            else {
+                if(stack.peekFirst() == value) continue;
+                else {
+                    stack.addFirst(value);
+                }
+            }
         }
         
-        List<Integer> list = new ArrayList<>();
-        int[] answer = new int[stack.size()];
-        int size = stack.size();
-        for(int i=size - 1; i >= 0; i--) {
-            answer[i] = stack.pop();
+        int[] result = new int[stack.size()];
+        for(int i=0; i<result.length; i++) {
+            result[i] = stack.pollLast();
         }
-        return answer;
+        
+        return result;
     }
 }
