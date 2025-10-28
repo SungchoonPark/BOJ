@@ -1,25 +1,31 @@
 import java.util.*;
 class Solution {
     public int solution(int[] scoville, int K) {
-        int answer = 0;
-        PriorityQueue<Integer> pq = new PriorityQueue<>();
-        for(int i : scoville) {
-            pq.offer(i);
+        //섞은 음식의 스코빌 지수 = 가장 맵지 않은 음식의 스코빌 지수 + (두 번째로 맵지 않은 음식의 스코빌 지수 * 2)
+        PriorityQueue<Long> pq = new PriorityQueue<>();
+        
+        int count = 0;
+        for(int s : scoville) {
+            pq.offer((long)s);
         }
         
-        while(!pq.isEmpty()) {
-            if(pq.size() == 1 && pq.peek() < K) {
-                return -1;
-            }
+        boolean isPossible = true;
+        while(true) {
             if(pq.peek() >= K) break;
             
-            int tmp1 = pq.poll();
-            int tmp2 = pq.poll();
-            pq.offer(tmp1 + (tmp2 * 2));
-            answer++;
+            if(pq.size() == 1) {
+                isPossible = false;
+                break;
+            }
+            
+            count++;
+            long minS = pq.poll();
+            long secondMinS = pq.poll();
+            pq.offer(minS + (secondMinS * 2));
         }
         
-        
-        return answer;
+        if(isPossible && count == 0) return 0;
+        if(count == 0 || !isPossible) return -1;
+        return count;
     }
 }
