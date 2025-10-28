@@ -1,18 +1,24 @@
 import java.util.*;
 class Solution {
     public int[] solution(int[] array, int[][] commands) {
-        List<Integer> list = new ArrayList<>();
+        List<Integer> results = new ArrayList<>();
+        
         for(int i=0; i<commands.length; i++) {
-            int start = commands[i][0];
-            int end = commands[i][1];
-            int findIdx = commands[i][2];
+            int st = commands[i][0] - 1;
+            int ed = commands[i][1] - 1;
+            int seq = commands[i][2] - 1;
             
-            int[] newArr = Arrays.copyOfRange(array, start-1, end);
+            int[] newarr = new int[ed - st + 1];
             
-            Arrays.sort(newArr);
+            int a = 0;
+            for(int j=st; j<=ed; j++) {
+                newarr[a++] = array[j];
+            }
             
-            list.add(newArr[findIdx-1]);
+            Arrays.sort(newarr);
+            results.add(newarr[seq]);
         }
-        return list.stream().mapToInt(Integer::intValue).toArray();
+        
+        return results.stream().mapToInt(Integer::intValue).toArray();
     }
 }
