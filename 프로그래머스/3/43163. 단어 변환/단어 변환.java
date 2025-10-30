@@ -1,37 +1,89 @@
 import java.util.*;
 
-class Solution {
-    static boolean[] visit;
-    static int answer;
+class Solution { 
+    HashMap<String, List<String>> graph;
+    HashMap<String, Boolean> visitedMap;
+    
     public int solution(String begin, String target, String[] words) {
-        visit = new boolean[words.length];
+        boolean earlyExit = true;
+        graph = new HashMap<>();
+        visitedMap = new HashMap<>();
+        Set<String> uniqueWords = new HashSet<>();
         
-        dfs(begin, target, words, 0);
-        return answer;
-    }
-    
-    private void dfs(String word, String target, String[] words, int cnt) {
-        if(word.equals(target)) {
-            answer = cnt;
-            return;
+        uniqueWords.add(begin);
+        visitedMap.put(begin, false);
+        for(String s : words) {
+            if(target.equals(s)) earlyExit = false;
+            uniqueWords.add(s);
+            visitedMap.put(s, false);
         }
         
-        for(int i=0; i<words.length; i++) {
-            if(visit[i]) continue;
-            
-            int tmp = 0;
-            // 단어 갯수 세야함
-            for(int j=0; j<words[0].length(); j++) {
-                if(word.charAt(j) == words[i].charAt(j)) tmp++;
-            }
-            
-            if(tmp == word.length() - 1) {
-                visit[i] = true;
-                dfs(words[i], target, words, cnt+1);
-                visit[i] = false;
-            }
+        if(earlyExit) return 0;
+        
+        for(String unique : uniqueWords) {
+            init(unique, uniqueWords);
         }
+        
+        return bfs(begin, target);
     }
     
+    private int bfs(String start, String goal) {
+        Queue<WordInfo> queue = new LinkedList<>();
+        queue.offer(new WordInfo(start, 0));
+        visitedMap.put(start, true);
+        
+        while(!queue.isEmpty()) {
+            WordInfo curInfo = queue.poll();
+            if(curInfo.word.equals(goal)) {
+                return curInfo.depth;
+            }
+            
+            List<String> names = graph.get(curInfo.word);
+            for(String name : names) {
+                if(!visitedMap.get(name)) {
+                    visitedMap.put(name, true);
+                    queue.offer(new WordInfo(name, curInfo.depth + 1));
+                }
+            }
+        }
+        
+        return -1;
+    }
     
+    private void init(String pivotWord, Set<String> uniqueWords) {
+        // 한자리만 차이나는 값들 미리 넣어놓는 함수
+        List<String> oneDifferents = new ArrayList<>();
+        
+        for(String unique : uniqueWords) {
+            if(pivotWord.equals(unique)) continue;
+            
+            if(isOneDiff(pivotWord, unique)) {
+                oneDifferents.add(unique);
+            }
+        }
+        
+        graph.put(pivotWord, oneDifferents);
+    }
+    
+    private boolean isOneDiff(String pivot, String other) {
+        int diffCnt = 0;
+        
+        for(int i=0; i<pivot.length(); i++) {
+            if(pivot.charAt(i) != other.charAt(i)) {
+                diffCnt++;
+            }
+        }
+        
+        return diffCnt == 1;
+    }
+    
+    class WordInfo {
+        String word;
+        int depth;
+        
+        public WordInfo(String word, int depth) {
+            this.word = word;
+            this.depth = depth;
+        }
+    }
 }
