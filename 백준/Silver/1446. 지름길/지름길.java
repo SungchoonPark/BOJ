@@ -1,61 +1,76 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.time.LocalTime;
 import java.util.*;
 
 public class Main {
+
     static StringTokenizer st;
-    static StringBuilder sb;
-    static int d;
-    static ArrayList<ArrayList<Shortcut>> graph = new ArrayList<>();
+    static List<Node>[] graph;
     static int[] dist;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
         st = new StringTokenizer(br.readLine());
-        sb = new StringBuilder();
-
         int n = Integer.parseInt(st.nextToken());
-        d = Integer.parseInt(st.nextToken());
-        dist = new int[10001];
-        for(int i=0; i<dist.length; i++) dist[i] = i;
+        int d = Integer.parseInt(st.nextToken());
+        graph = new List[d + 1];
+        dist = new int[d + 1];
 
-        for(int i=0; i<=10001; i++) graph.add(new ArrayList<>());
+        for (int i = 0; i <= d; i++) {
+            graph[i] = new ArrayList<>();
+        }
+        Arrays.fill(dist, Integer.MAX_VALUE);
+        dist[0] = 0;
 
-        for(int i=0; i<n; i++) {
+        for (int i = 0; i < d; i++) {
+            graph[i].add(new Node(i + 1, 1));
+        }
+
+        for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
 
-            int startPos = Integer.parseInt(st.nextToken());
-            int endPos = Integer.parseInt(st.nextToken());
+            int start = Integer.parseInt(st.nextToken());
+            int end = Integer.parseInt(st.nextToken());
             int cost = Integer.parseInt(st.nextToken());
-            if (endPos > d) continue;
-            graph.get(startPos).add(new Shortcut(endPos, cost));
+
+            if (end <= d) graph[start].add(new Node(end, cost));
         }
 
         dijkstra(0);
+
         System.out.println(dist[d]);
+
     }
 
-    private static void dijkstra(int startPos) {
-        if (startPos > d) return;
+    private static void dijkstra(int n) {
+        PriorityQueue<Node> pq = new PriorityQueue<>((a,b) -> a.cost - b.cost);
+        pq.add(new Node(n, 0));
 
-        if (dist[startPos + 1] > dist[startPos] + 1) dist[startPos + 1] = dist[startPos] + 1;
+        while(!pq.isEmpty()) {
+            Node curNode = pq.poll();
+            int curN = curNode.node;
+            int cost = curNode.cost;
 
-        for(int i=0; i<graph.get(startPos).size(); i++) {
-            if (dist[startPos] + graph.get(startPos).get(i).cost < dist[graph.get(startPos).get(i).toPos]) {
-                dist[graph.get(startPos).get(i).toPos] = dist[startPos] + graph.get(startPos).get(i).cost;
+            if (dist[curN] < cost) continue;
+
+            for (Node node : graph[curN]) {
+                int newDist = dist[curN] + node.cost;
+
+                if (newDist < dist[node.node]) {
+                    dist[node.node] = newDist;
+                    pq.add(new Node(node.node, newDist));
+                }
             }
         }
-
-        dijkstra(startPos + 1);
     }
 
-    static class Shortcut {
-        int toPos;
+    static class Node {
+        int node;
         int cost;
 
-        public Shortcut(int toPos, int cost) {
-            this.toPos = toPos;
+        public Node(int node, int cost) {
+            this.node = node;
             this.cost = cost;
         }
     }
