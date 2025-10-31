@@ -1,40 +1,43 @@
 import java.util.*;
+
 class Solution {
     public int solution(int[] priorities, int location) {
-        Queue<Value> q = new LinkedList<>();
-        PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+        PriorityQueue<Integer> pq = new PriorityQueue<>((p1, p2) -> p2 - p1);
+        Queue<Process> q = new LinkedList<>();
         
         for(int i=0; i<priorities.length; i++) {
-            q.offer(new Value(priorities[i], i));
+            q.add(new Process(i, priorities[i]));
             pq.offer(priorities[i]);
         }
         
-        int answer = 0;
+        int answer = 1;
         while(!q.isEmpty()) {
-            int max = pq.peek();
-            Value curV = q.poll();
+            Integer maxPrior = pq.peek();
+            Process curP = q.poll();
             
-            if(curV.p == max) {
-                answer++;
+            if(maxPrior == curP.tmp) {
+                // 우선순위가 높은거 맞음
                 pq.poll();
-                if(curV.l == location) {
-                    break;
+                if(curP.idx == location) return answer;
+                else {
+                    answer++;
                 }
+            } else {
+                // 우선순위 안맞으니 다시 큐에 삽입
+                q.offer(curP);
             }
-            
-            q.offer(curV);
         }
         
-        return answer;
+        return -1;
     }
 }
 
-class Value {
-    int p;
-    int l;
+class Process{
+    int idx;
+    int tmp;
     
-    public Value(int p, int l) {
-        this.p = p;
-        this.l = l;
+    public Process(int idx, int tmp) {
+        this.idx = idx;
+        this.tmp = tmp;
     }
 }
